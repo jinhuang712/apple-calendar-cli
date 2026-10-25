@@ -124,7 +124,7 @@ acal events --from 2026-11-01 --to 2026-11-08 [--calendar <名称或 id>]
 - 订阅日历里的日程也会列出，和其他日程的字段相同。它们只读，F6 和 F7 不能改。
 - 时间范围上限一年。超过时报错，因为系统会展开范围内所有重复日程，范围过大会很慢。
 
-Gap: 没有关键词搜索，见 Later。
+没有关键词搜索，见 Later。
 
 ### F4 — 日程详情 ✅
 
@@ -135,6 +135,8 @@ acal event <id> [--occurrence 2026-11-03T15:00:00+08:00]
 ```
 
 - 输出一个对象，在 F3 的字段之外加：`notes`、`url`、`alarms`、`recurrenceRule`、`attendees`。
+- `alarms` 是字符串数组。`30m` 表示开始前 30 分钟，`-9h` 表示开始后 9 小时，绝对时间的提醒写成 ISO 8601。全天日程的提醒常是带负号的形式。
+- `recurrenceRule` 有 `frequency`、`interval`，有的话还有 `count` 或 `until`。只读出第一条规则。
 - `attendees` 只读，每人有名字、邮箱、状态。
 - 重复日程要用 `--occurrence` 指定是哪一次。不写则取最近一次未开始的。
 
