@@ -26,7 +26,19 @@ swift build -c release
 .build/release/acal auth
 ```
 
-第一次使用前，要在系统设置 > 隐私与安全性 > 日历里，给你运行 `acal` 的终端打开"完全访问"。
+### 给 Claude Code 装 skill
+
+skill 教 agent 怎么安全地使用 `acal`：先预览再执行、重复日程要写范围、订阅要人确认。一行命令安装：
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/jinhuang712/apple-calendar-cli/master/install.sh | sh
+```
+
+它把 [skills/apple-calendar/SKILL.md](skills/apple-calendar/SKILL.md) 装到 `~/.claude/skills/apple-calendar/`，重复运行会覆盖。它只装 skill，不装 `acal` 本身，所以仍要先按上面的步骤构建。上面这个地址要等仓库公开后才可用，目前只用本地文件服务器测过脚本。
+
+### 第一次使用前
+
+要在系统设置 > 隐私与安全性 > 日历里，给你运行 `acal` 的终端打开"完全访问"。
 
 ## 已知限制
 
