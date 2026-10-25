@@ -1,11 +1,11 @@
 import ArgumentParser
 
-struct Acal: ParsableCommand {
+@main
+struct Acal: AsyncParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "acal",
         abstract: "Read and write Calendar events.",
-        subcommands: []
+        subcommands: [Auth.self]
     )
 }
 
-Acal.main()

@@ -14,8 +14,8 @@
 
 | 能力 | 做什么 | 功能 | 状态 |
 |---|---|---|---|
-| 看授权状态 | 显示是否已获得日历完全访问权限 | F1 | ⬜ |
-| 发起授权 | 弹出系统授权框 | F1 | ⬜ |
+| 看授权状态 | 显示是否已获得日历完全访问权限 | F1 | 🚧 |
+| 发起授权 | 弹出系统授权框 | F1 | 🚧 |
 
 **看**
 
@@ -61,7 +61,8 @@
 | 时间输出 | ISO 8601，带时区偏移 |
 | 日程 ID | 输出里的 `id` 可直接传给 F4、F6、F7 |
 | 退出码 | 0 成功，1 出错，2 用法错误，3 没有授权 |
-| 只读 | F1 到 F4 不会改动日历 || 设置 | 没有。所有行为由命令行参数决定 |
+| 只读 | F1 到 F4 不会改动日历 |
+| 设置 | 没有。所有行为由命令行参数决定 |
 
 ```bash
 acal events --from 2026-11-01 --to 2026-11-08 | jq -c 'select(.allDay | not)'   # 过滤交给 jq
@@ -69,7 +70,7 @@ acal events --from 2026-11-01 --to 2026-11-08 | jq -c 'select(.allDay | not)'   
 
 ## 授权
 
-### F1 — 授权 ⬜
+### F1 — 授权 🚧
 
 日历数据需要用户授权。这个命令让用户知道现在的状态，并在需要时发起授权。
 
@@ -78,12 +79,15 @@ acal auth            # 显示状态
 acal auth --request  # 弹出系统授权框
 ```
 
-- `acal auth` 输出一个对象：`status` 是 `granted`、`denied`、`writeOnly`、`notDetermined` 之一。
+- `acal auth` 输出一个对象：`status` 是 `granted`、`denied`、`writeOnly`、`notDetermined`、`restricted` 之一。`restricted` 表示这台 Mac 的描述文件等设置禁止了日历访问。
 - `--request` 只在状态是 `notDetermined` 时弹框，其余状态直接输出现状。
 - 状态是 `writeOnly` 时，读取命令不可用，因为只能写入。输出会提示去系统设置改成完全访问。
 - 授权记在运行 `acal` 的终端头上，不记在 `acal` 自己头上。换一个终端（例如 Terminal、Ghostty、iTerm），要各授权一次。
 - 状态是 `denied` 时，输出会提示去系统设置 > 隐私与安全性 > 日历，给当前终端打开"完全访问"。系统不会再弹框，这一步只能由人做。
+- `acal auth` 只报告状态，退出码总是 0。`--request` 结束后状态仍不是 `granted` 时，退出码 3。
 - 其他命令遇到没有授权时不自己弹框，而是以退出码 3 结束，并提示先运行 `acal auth --request`。
+
+Gap: 只在已授权的终端里测过 `granted` 这一条路径。`notDetermined`、`denied`、`writeOnly`、`restricted` 的输出和提示，只靠代码推断，没有在真机上走过。
 
 #### 其他命令不自动弹授权框
 
