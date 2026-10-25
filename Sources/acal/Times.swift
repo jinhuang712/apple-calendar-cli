@@ -26,7 +26,8 @@ func parseTime(_ text: String, option: String) -> ParsedTime {
     for (pattern, dateOnly) in inputPatterns {
         if let date = makeFormatter(pattern).date(from: text) { return ParsedTime(date: date, dateOnly: dateOnly) }
     }
-    die("\(option): cannot read '\(text)'. Use ISO 8601, for example 2026-11-03T15:00:00+08:00 or 2026-11-03.",
+    die(
+        "\(option): cannot read '\(text)'. Use ISO 8601, for example 2026-11-03T15:00:00+08:00 or 2026-11-03.",
         code: Code.usage)
 }
 

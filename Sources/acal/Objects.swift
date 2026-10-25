@@ -70,7 +70,9 @@ private func statusName(_ status: EKParticipantStatus) -> String {
 private func attendeeObject(_ attendee: EKParticipant) -> [String: Any] {
     var object: [String: Any] = ["status": statusName(attendee.participantStatus)]
     if let name = attendee.name { object["name"] = name }
-    if attendee.url.scheme == "mailto" { object["email"] = attendee.url.absoluteString.replacingOccurrences(of: "mailto:", with: "") }
+    if attendee.url.scheme == "mailto" {
+        object["email"] = attendee.url.absoluteString.replacingOccurrences(of: "mailto:", with: "")
+    }
     return object
 }
 

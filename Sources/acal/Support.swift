@@ -8,8 +8,10 @@ enum Code {
 }
 
 func emit(_ object: [String: Any]) {
-    guard let data = try? JSONSerialization.data(withJSONObject: object, options: [.sortedKeys, .withoutEscapingSlashes]),
-          let text = String(bytes: data, encoding: .utf8)
+    guard
+        let data = try? JSONSerialization.data(
+            withJSONObject: object, options: [.sortedKeys, .withoutEscapingSlashes]),
+        let text = String(bytes: data, encoding: .utf8)
     else { die("Could not encode the result as JSON.") }
     print(text)
 }

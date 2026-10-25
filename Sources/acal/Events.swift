@@ -14,9 +14,12 @@ func occurrences(_ store: EKEventStore, from: Date, to: Date, calendars: [EKCale
 func findOccurrence(_ store: EKEventStore, id: String, occurrence: Date?) -> EKEvent {
     let now = Date()
     if let occurrence {
-        let window = occurrences(store, from: occurrence.addingTimeInterval(-86400),
-                                 to: occurrence.addingTimeInterval(86400), calendars: nil)
-        if let match = window.first(where: { $0.eventIdentifier == id && abs($0.startDate.timeIntervalSince(occurrence)) < 1 }) {
+        let window = occurrences(
+            store, from: occurrence.addingTimeInterval(-86400),
+            to: occurrence.addingTimeInterval(86400), calendars: nil)
+        if let match = window.first(where: {
+            $0.eventIdentifier == id && abs($0.startDate.timeIntervalSince(occurrence)) < 1
+        }) {
             return match
         }
         die("The event '\(id)' has no occurrence starting at \(formatTime(occurrence)).")

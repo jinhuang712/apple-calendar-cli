@@ -12,6 +12,8 @@ swift test
 swiftlint lint --strict
 ```
 
+Code is formatted with `swift-format` using the settings in `.swift-format`, and checked with `swiftlint`. Trailing commas are left out of collection literals, because swiftlint forbids them.
+
 The unit tests need no calendar access. Commands that read or write the calendar can only be checked by hand, against a real calendar.
 
 ## Checking a change by hand

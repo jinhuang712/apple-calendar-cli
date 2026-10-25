@@ -1,4 +1,5 @@
 import XCTest
+
 @testable import acal
 
 final class TimesTests: XCTestCase {
@@ -40,7 +41,8 @@ final class TimesTests: XCTestCase {
     func testOutputRoundTripsAndCarriesAnOffset() {
         let original = parseTime("2026-11-03T15:00:00+08:00", option: "--start").date
         let text = formatTime(original)
-        XCTAssertNotNil(text.range(of: #"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([+-]\d{2}:\d{2}|Z)$"#, options: .regularExpression))
+        XCTAssertNotNil(
+            text.range(of: #"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}([+-]\d{2}:\d{2}|Z)$"#, options: .regularExpression))
         XCTAssertEqual(parseTime(text, option: "--start").date, original)
     }
 

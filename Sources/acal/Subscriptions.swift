@@ -17,7 +17,8 @@ func runAppleScript(_ script: String) -> String {
     let message = String(bytes: errors.fileHandleForReading.readDataToEndOfFile(), encoding: .utf8) ?? ""
     guard process.terminationStatus == 0 else {
         if message.contains("-1743") {
-            die("This terminal may not control Calendar. Allow it in System Settings > Privacy & Security > Automation.",
+            die(
+                "This terminal may not control Calendar. Allow it in System Settings > Privacy & Security > Automation.",
                 code: Code.notAuthorized)
         }
         die("Calendar did not do it: \(message.trimmingCharacters(in: .whitespacesAndNewlines))")
@@ -95,7 +96,9 @@ struct Unsubscribe: ParsableCommand {
 
     private func waitUntilGone(_ calendarID: String) -> Bool {
         for _ in 0..<10 {
-            if !EKEventStore().calendars(for: .event).contains(where: { $0.calendarIdentifier == calendarID }) { return true }
+            if !EKEventStore().calendars(for: .event).contains(where: { $0.calendarIdentifier == calendarID }) {
+                return true
+            }
             Thread.sleep(forTimeInterval: 0.5)
         }
         return false

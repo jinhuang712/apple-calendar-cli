@@ -87,7 +87,9 @@ struct EventFields: ParsableArguments {
         }
         applyText(to: event)
         applyTimes(to: event, isNew: isNew)
-        if !alarms.isEmpty { event.alarms = alarms.map { EKAlarm(relativeOffset: -parseOffset($0, option: "--alarm")) } }
+        if !alarms.isEmpty {
+            event.alarms = alarms.map { EKAlarm(relativeOffset: -parseOffset($0, option: "--alarm")) }
+        }
         applyRepeat(to: event)
     }
 
@@ -126,7 +128,9 @@ struct EventFields: ParsableArguments {
 
     private func applyRepeat(to event: EKEvent) {
         guard let repeatRule else {
-            if interval != nil || count != nil || until != nil { die("--interval, --count and --until need --repeat.", code: Code.usage) }
+            if interval != nil || count != nil || until != nil {
+                die("--interval, --count and --until need --repeat.", code: Code.usage)
+            }
             return
         }
         if count != nil, until != nil { die("Use --count or --until, not both.", code: Code.usage) }
@@ -137,6 +141,7 @@ struct EventFields: ParsableArguments {
             ending = EKRecurrenceEnd(end: parsed.dateOnly ? endOfDay(parsed.date) : parsed.date)
         }
         for rule in event.recurrenceRules ?? [] { event.removeRecurrenceRule(rule) }
-        event.addRecurrenceRule(EKRecurrenceRule(recurrenceWith: repeatRule.frequency, interval: interval ?? 1, end: ending))
+        event.addRecurrenceRule(
+            EKRecurrenceRule(recurrenceWith: repeatRule.frequency, interval: interval ?? 1, end: ending))
     }
 }

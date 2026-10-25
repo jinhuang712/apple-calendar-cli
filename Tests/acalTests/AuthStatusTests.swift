@@ -1,5 +1,6 @@
 import EventKit
 import XCTest
+
 @testable import acal
 
 final class AuthStatusTests: XCTestCase {
