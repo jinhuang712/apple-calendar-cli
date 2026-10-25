@@ -1,4 +1,4 @@
-<!-- what-we-build: approved 2026-10-25 -->
+<!-- what-we-build: drafted 2026-10-25 -->
 
 # Features
 
@@ -81,7 +81,8 @@ acal auth --request  # 弹出系统授权框
 - `acal auth` 输出一个对象：`status` 是 `granted`、`denied`、`writeOnly`、`notDetermined` 之一。
 - `--request` 只在状态是 `notDetermined` 时弹框，其余状态直接输出现状。
 - 状态是 `writeOnly` 时，读取命令不可用，因为只能写入。输出会提示去系统设置改成完全访问。
-- 实测发现：从终端直接运行一个命令行程序请求授权，系统不弹框，请求静默返回"未授权"。怎么让用户拿到授权，是实现要解决的问题，待定。
+- 授权记在运行 `acal` 的终端头上，不记在 `acal` 自己头上。换一个终端（例如 Terminal、Ghostty、iTerm），要各授权一次。
+- 状态是 `denied` 时，输出会提示去系统设置 > 隐私与安全性 > 日历，给当前终端打开"完全访问"。系统不会再弹框，这一步只能由人做。
 - 其他命令遇到没有授权时不自己弹框，而是以退出码 3 结束，并提示先运行 `acal auth --request`。
 
 #### 其他命令不自动弹授权框

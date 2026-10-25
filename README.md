@@ -22,7 +22,7 @@ swift build -c release
 ## 已知限制
 
 - 只支持 macOS，最低 14。
-- 从终端直接运行命令行程序请求日历授权时，系统不弹框、静默返回"未授权"。怎么授权是第一个要解决的问题，见 [FEATURES.md](FEATURES.md) 的 F1。
+- 日历授权记在运行 `acal` 的终端头上，换终端要重新授权，见 [FEATURES.md](FEATURES.md) 的 F1。
 - 添加订阅需要人在日历 App 里确认两次，无法无人值守。
 
 ## 文档
