@@ -41,4 +41,5 @@ swift build -c release
 | 文档 | 内容 |
 |---|---|
 | [FEATURES.md](FEATURES.md) | 每个功能的行为、状态、出错情况，以及不做什么 |
+| [DESIGNS.md](DESIGNS.md) | 设计原则，以及反直觉的选择为什么这样选 |
 | [CHANGELOG.md](CHANGELOG.md) | 版本变化 |
