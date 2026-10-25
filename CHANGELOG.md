@@ -3,6 +3,7 @@
 ## 0.1.0 (2026-10-26)
 
 - Project skeleton.
+- A universal prebuilt binary (Apple silicon and Intel) with a SHA-256 checksum is attached to the release; `scripts/package.sh` builds it.
 - `acal --version`, shell completion through `acal --generate-completion-script`, unit tests, swiftlint settings and a GitHub Actions workflow.
 - An `apple-calendar` skill for Claude Code, with `install.sh` to install it through curl.
 - `acal subscribe`, `acal unsubscribe` and `acal refresh` manage subscribed calendars through the Calendar app. `subscribe` needs the user to confirm in Calendar; `unsubscribe` previews unless `--yes` is given.

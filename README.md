@@ -70,7 +70,19 @@ What each command does, what it prints when something fails, and what is deliber
 
 ## 📦 Install
 
-You need macOS 14 or later and a Swift toolchain (Xcode or the command line tools).
+You need macOS 14 or later.
+
+**Download the prebuilt binary** (Apple silicon and Intel in one file):
+
+```bash
+curl -fsSL https://github.com/jinhuang712/apple-calendar-cli/releases/download/v0.1.0/acal-0.1.0-macos-universal.tar.gz \
+  | tar -xz --strip-components 1 acal-0.1.0-macos-universal/acal
+mv acal ~/.local/bin/        # or anywhere on your PATH
+```
+
+A SHA-256 checksum sits next to the file on the [releases page](https://github.com/jinhuang712/apple-calendar-cli/releases). The binary is signed ad hoc and is not notarized. If you download it with a browser and macOS refuses to open it, run `xattr -d com.apple.quarantine acal`. The Intel half has not been run on an Intel Mac.
+
+**Or build it from source** (needs a Swift toolchain, from Xcode or the command line tools):
 
 ```bash
 git clone https://github.com/jinhuang712/apple-calendar-cli.git

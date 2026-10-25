@@ -70,7 +70,19 @@ $ acal rm <id> --span future --occurrence 2026-11-12T07:00:00Z --yes
 
 ## 📦 安装
 
-需要 macOS 14 或更高，以及 Swift 工具链（Xcode 或命令行工具）。
+需要 macOS 14 或更高。
+
+**下载预编译的二进制**（Apple 芯片和 Intel 合在一个文件里）：
+
+```bash
+curl -fsSL https://github.com/jinhuang712/apple-calendar-cli/releases/download/v0.1.0/acal-0.1.0-macos-universal.tar.gz \
+  | tar -xz --strip-components 1 acal-0.1.0-macos-universal/acal
+mv acal ~/.local/bin/        # 或放到 PATH 里任意位置
+```
+
+文件旁边在[发布页](https://github.com/jinhuang712/apple-calendar-cli/releases)有 SHA-256 校验和。二进制只做了临时签名，没有公证。如果用浏览器下载、macOS 拒绝打开，运行 `xattr -d com.apple.quarantine acal`。Intel 那一半没有在 Intel Mac 上跑过。
+
+**或者从源码构建**（需要 Swift 工具链，来自 Xcode 或命令行工具）：
 
 ```bash
 git clone https://github.com/jinhuang712/apple-calendar-cli.git
