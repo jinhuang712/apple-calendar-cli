@@ -5,7 +5,7 @@ struct Acal: AsyncParsableCommand {
     static let configuration = CommandConfiguration(
         commandName: "acal",
         abstract: "Read and write Calendar events.",
-        subcommands: [Auth.self]
+        subcommands: [Auth.self, Calendars.self, EventsList.self, EventDetail.self]
     )
 }
 

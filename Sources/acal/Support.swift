@@ -1,3 +1,4 @@
+import EventKit
 import Foundation
 
 enum Code {
@@ -20,4 +21,13 @@ func warn(_ message: String) {
 func die(_ message: String, code: Int32 = Code.failure) -> Never {
     warn(message)
     exit(code)
+}
+
+/// The store for commands that read or change events. Exits with code 3 unless access is full.
+func openStore() -> EKEventStore {
+    let status = AuthStatus.current
+    guard status == .granted else {
+        die("Calendar access is \(status.rawValue). \(status.hint ?? "")", code: Code.notAuthorized)
+    }
+    return EKEventStore()
 }
