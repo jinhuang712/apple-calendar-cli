@@ -1,6 +1,6 @@
 # Changelog
 
-## 0.1.0 (unreleased)
+## 0.1.0 (2026-10-26)
 
 - Project skeleton.
 - `acal --version`, shell completion through `acal --generate-completion-script`, unit tests, swiftlint settings and a GitHub Actions workflow.
