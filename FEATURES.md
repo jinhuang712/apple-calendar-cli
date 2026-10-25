@@ -131,12 +131,12 @@ Gap: 没有关键词搜索，见 Later。
 按 ID 取一个日程的完整字段。
 
 ```bash
-acal event <id> [--start 2026-11-03T15:00:00+08:00]
+acal event <id> [--occurrence 2026-11-03T15:00:00+08:00]
 ```
 
 - 输出一个对象，在 F3 的字段之外加：`notes`、`url`、`alarms`、`recurrenceRule`、`attendees`。
 - `attendees` 只读，每人有名字、邮箱、状态。
-- 重复日程要用 `--start` 指定是哪一次。不写则取最近一次未开始的。
+- 重复日程要用 `--occurrence` 指定是哪一次。不写则取最近一次未开始的。
 
 ## 建
 
@@ -178,13 +178,13 @@ Gap: 重复规则只支持上面四种周期。"每月第二个周三"这类规�
 修改一个日程的字段。
 
 ```bash
-acal edit <id> [--start <时间>] [--title "新标题"] [--span this|future] [--yes]
+acal edit <id> [--occurrence <时间>] [--start <新时间>] [--title "新标题"] [--span this|future] [--yes]
 ```
 
 - 可改的字段与 F5 相同。没写的字段保持不变。
 - 改非重复日程，直接执行，输出修改后的对象。
 - 改重复日程时必须写 `--span`：
-  - `this`：只改 `--start` 指定的那一次。此时 `--start` 必填，用来指明是哪一次。
+  - `this`：只改 `--occurrence` 指定的那一次。此时 `--occurrence` 必填，它是原来的开始时间，用来指明是哪一次。新的开始时间用 `--start`。
   - `future`：改这一次以及之后的所有次。
 - 重复日程的改动属于多个日程的改动，默认只预览：输出会变成什么，退出码 0，不写入。加 `--yes` 才真正写入。
 - 只读日历里的日程报错。
@@ -199,7 +199,7 @@ acal edit <id> [--start <时间>] [--title "新标题"] [--span this|future] [--
 删除一个日程。
 
 ```bash
-acal rm <id> [--start <时间>] [--span this|future] [--yes]
+acal rm <id> [--occurrence <时间>] [--span this|future] [--yes]
 ```
 
 - 默认只预览：输出会被删除的日程，退出码 0，不删。加 `--yes` 才真正删除。
