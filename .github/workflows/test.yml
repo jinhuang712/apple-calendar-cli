@@ -9,10 +9,12 @@ jobs:
   test:
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - name: Build
         run: swift build
       - name: Unit tests
         run: swift test
+      - name: Install swiftlint
+        run: brew install swiftlint
       - name: Lint
         run: swiftlint lint --strict
