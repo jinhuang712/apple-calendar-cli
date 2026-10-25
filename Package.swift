@@ -10,6 +10,7 @@ let package = Package(
         .executableTarget(
             name: "acal",
             dependencies: [.product(name: "ArgumentParser", package: "swift-argument-parser")]
-        )
+        ),
+        .testTarget(name: "acalTests", dependencies: ["acal"])
     ]
 )

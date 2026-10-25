@@ -11,7 +11,9 @@ struct Add: ParsableCommand {
         let store = openStore()
         let event = EKEvent(eventStore: store)
         fields.apply(to: event, store: store, isNew: true)
-        do { try store.save(event, span: .futureEvents, commit: true) } catch { die("Could not save the event: \(error.localizedDescription)") }
+        do { try store.save(event, span: .futureEvents, commit: true) } catch {
+            die("Could not save the event: \(error.localizedDescription)")
+        }
         emit(eventObject(event, detailed: true))
     }
 }
